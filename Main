@@ -126,14 +126,37 @@ section.active{display:block}
 .wg{columns:3;column-gap:12px;margin-top:56px}
 .wc{position:relative;overflow:hidden;break-inside:avoid;margin-bottom:12px;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1)}
 .wc:hover{transform:translateY(-5px)}
-.wci{position:relative;overflow:hidden;width:100%}
+
+/* ── THE FIX: use aspect-ratio containers with real <img> tags ── */
+.wci{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+}
 .wc:nth-child(4n+1) .wci{aspect-ratio:4/3}
 .wc:nth-child(4n+2) .wci{aspect-ratio:16/9}
 .wc:nth-child(4n+3) .wci{aspect-ratio:3/2}
 .wc:nth-child(4n+0) .wci{aspect-ratio:7/4}
-.wc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .55s ease;display:block}
+
+/* The actual image - THIS is how images are displayed reliably */
+.wc-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .55s ease;
+  display:block;
+}
 .wc:hover .wc-img{transform:scale(1.04)}
-.wc-fallback{position:absolute;inset:0;z-index:0}
+
+/* Fallback gradient shown BEHIND the image */
+.wc-fallback{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
 .bg0{background:linear-gradient(135deg,#0a1460 0%,#1a3af5 50%,#0d2280 100%)}
 .bg1{background:linear-gradient(135deg,#060828 0%,#0e1d8a 60%,#1428c0 100%)}
 .bg2{background:linear-gradient(135deg,#080e3a 0%,#0f2560 50%,#1938b0 100%)}
@@ -144,6 +167,7 @@ section.active{display:block}
 .bg7{background:linear-gradient(135deg,#020510 0%,#071060 55%,#0c1ea8 100%)}
 .bg8{background:linear-gradient(135deg,#030614 0%,#091470 50%,#1530e0 100%)}
 .bg9{background:linear-gradient(135deg,#050818 0%,#0c1a80 60%,#1838f0 100%)}
+
 .wglow{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 55% 55% at 70% 30%,rgba(74,111,255,.4) 0%,transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
 .wc:hover .wglow{opacity:1}
 .winfo{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:18px;background:linear-gradient(to top,rgba(7,9,26,.9) 0%,transparent 100%);transform:translateY(5px);opacity:0;transition:all .35s ease}
@@ -170,24 +194,9 @@ section.active{display:block}
 
 /* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.about-vis{
-  aspect-ratio:3/4;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--border);
-  background:#07091a;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.about-vis-logo{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center;
-  display:block;
-  padding:32px;
-}
+.about-vis{aspect-ratio:3/4;background:linear-gradient(135deg,#0a1460 0%,#1a3af5 40%,#060828 100%);position:relative;overflow:hidden}
+.about-vis-lines{position:absolute;inset:0;overflow:hidden}
+.about-vis-glow{position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 70% 40%,rgba(74,111,255,.45) 0%,transparent 70%)}
 .about-badge{position:absolute;bottom:24px;left:24px;background:rgba(7,9,26,.9);border:1px solid var(--border);padding:14px 18px}
 .about-badge-n{font-family:var(--f-head);font-size:30px;font-weight:800;color:var(--blue-lt);line-height:1}
 .about-badge-l{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--g1);margin-top:4px}
@@ -278,7 +287,9 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
   letter-spacing:3px;text-transform:uppercase;
   color:rgba(255,255,255,.35);white-space:nowrap;
 }
-#lightbox-tag{color:var(--blue-lt);margin-right:10px;}
+#lightbox-tag{
+  color:var(--blue-lt);margin-right:10px;
+}
 #lightbox-counter{
   position:absolute;top:28px;left:50%;transform:translateX(-50%);
   font-family:var(--f-body);font-size:10px;letter-spacing:3px;
@@ -409,7 +420,8 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
     <div class="about-grid">
       <div class="rv">
         <div class="about-vis">
-          <img class="about-vis-logo" src="Logo.png" alt="Miyajlo Design Logo">
+          <div class="about-vis-lines"><svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><g transform="rotate(-15 200 250)" stroke="rgba(255,255,255,0.35)" stroke-width="0.5" fill="none"><line x1="-100" y1="0" x2="700" y2="0"/><line x1="-100" y1="18" x2="700" y2="18"/><line x1="-100" y1="36" x2="700" y2="36"/><line x1="-100" y1="54" x2="700" y2="54"/><line x1="-100" y1="72" x2="700" y2="72"/><line x1="-100" y1="90" x2="700" y2="90"/><line x1="-100" y1="108" x2="700" y2="108"/><line x1="-100" y1="126" x2="700" y2="126"/><line x1="-100" y1="144" x2="700" y2="144"/><line x1="-100" y1="162" x2="700" y2="162"/><line x1="-100" y1="180" x2="700" y2="180"/><line x1="-100" y1="198" x2="700" y2="198"/><line x1="-100" y1="216" x2="700" y2="216"/><line x1="-100" y1="234" x2="700" y2="234"/><line x1="-100" y1="252" x2="700" y2="252"/><line x1="-100" y1="270" x2="700" y2="270"/><line x1="-100" y1="288" x2="700" y2="288"/><line x1="-100" y1="306" x2="700" y2="306"/><line x1="-100" y1="324" x2="700" y2="324"/><line x1="-100" y1="342" x2="700" y2="342"/><line x1="-100" y1="360" x2="700" y2="360"/><line x1="-100" y1="378" x2="700" y2="378"/><line x1="-100" y1="396" x2="700" y2="396"/><line x1="-100" y1="414" x2="700" y2="414"/><line x1="-100" y1="432" x2="700" y2="432"/><line x1="-100" y1="450" x2="700" y2="450"/><line x1="-100" y1="468" x2="700" y2="468"/></g></svg></div>
+          <div class="about-vis-glow"></div>
           <div class="about-badge"><div class="about-badge-n">30+</div><div class="about-badge-l">Projects Delivered</div></div>
         </div>
       </div>
@@ -552,6 +564,11 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
       }
     },INT);
 
+    /* ════════════════════════════════════════════════
+       ── PROJECTS — FIXED: uses <img> tags, NOT
+          background-image (which was being overridden
+          by the .bg0-.bg9 gradient CSS classes)
+    ════════════════════════════════════════════════ */
     var PROJECTS=[
       {tag:'Web Design',name:'Red Futuristic',img:'Project1.png'},
       {tag:'Web Design',name:'Minimalistic Menu',img:'Project2.png'},
@@ -566,6 +583,10 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
       PROJECTS.forEach(function(p,i){
         var card=document.createElement('div');
         card.className='wc rv';
+
+        /* Build inner HTML using a real <img> tag.
+           The fallback .bg div sits behind it at z-index:0
+           so if the image fails to load you still see a gradient. */
         card.innerHTML=
           '<div class="wci">'
           +'<div class="wc-fallback bg'+(i%10)+'"></div>'
@@ -577,6 +598,7 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
           +'<div class="w-tag">'+p.tag+'</div>'
           +'<div class="w-name">'+p.name+'</div>'
           +'</div>';
+
         grid.appendChild(card);
       });
     }
@@ -648,6 +670,7 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
     }
     function lbGo(dir){
       lbIndex=(lbIndex+dir+lbProjects.length)%lbProjects.length;
+      /* quick fade swap */
       lbImg.style.opacity='0';
       lbImg.style.transform='scale(.96)';
       setTimeout(function(){
@@ -663,6 +686,7 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
     }
     lbImg.style.transition='opacity .18s ease, transform .18s ease';
 
+    /* attach click to cards after they're built */
     setTimeout(function(){
       var cards=document.querySelectorAll('.wc');
       cards.forEach(function(card,i){
