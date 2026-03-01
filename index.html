@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miyajlo Design</title>
+<!-- 2 fonts only: Syne (headings/UI) + Inter (body) -->
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -48,6 +49,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;display:flex;align-items:ce
 .n-right{display:flex;align-items:center;gap:32px}
 .n-contact{font-family:var(--f-body);font-size:13px;font-weight:400;letter-spacing:.3px;color:var(--g1);background:none;border:none;transition:color .25s}
 .n-contact:hover{color:var(--w)}
+/* hamburger */
 .hbg{width:36px;height:36px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:none;border:none;padding:6px;position:relative;z-index:2010}
 .hbg span{display:block;height:1px;background:var(--w);transition:transform .38s cubic-bezier(.4,0,.2,1),opacity .25s,width .3s}
 .hbg span:nth-child(1){width:100%}
@@ -58,23 +60,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:2000;display:flex;align-items:ce
 .hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ── MENU OVERLAY ── */
-.menu{position:fixed;inset:0;z-index:1900;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:0 52px 80px;transform:translateY(-100%);transition:transform .65s cubic-bezier(.76,0,.24,1)}
+.menu{
+  position:fixed;inset:0;z-index:1900;
+  background:var(--bg);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 52px 80px;
+  transform:translateY(-100%);
+  transition:transform .65s cubic-bezier(.76,0,.24,1);
+}
 .menu.open{transform:translateY(0)}
 .menu::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-20deg,transparent,transparent 17px,rgba(255,255,255,.018) 17px,rgba(255,255,255,.018) 18px)}
+
 .menu-list{position:relative;z-index:2}
-.menu-link{display:block;width:100%;background:none;border:none;text-align:left;font-family:var(--f-head);font-weight:800;font-size:clamp(38px,7vw,88px);letter-spacing:-2px;line-height:1.02;color:rgba(255,255,255,.13);padding:12px 0;border-bottom:1px solid var(--border);position:relative;opacity:0;transform:translateY(22px);transition:color .3s ease,opacity .45s ease,transform .45s ease}
+.menu-link{
+  display:block;width:100%;background:none;border:none;text-align:left;
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(38px,7vw,88px);
+  letter-spacing:-2px;line-height:1.02;
+  color:rgba(255,255,255,.13);
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+  opacity:0;transform:translateY(22px);
+  transition:color .3s ease, opacity .45s ease, transform .45s ease;
+}
 .menu-link:last-child{border-bottom:none}
 .menu.open .menu-link:nth-child(1){opacity:1;transform:none;transition-delay:.13s}
 .menu.open .menu-link:nth-child(2){opacity:1;transform:none;transition-delay:.19s}
 .menu.open .menu-link:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
-.menu.open .menu-link:nth-child(4){opacity:1;transform:none;transition-delay:.31s}
-.menu.open .menu-link:nth-child(5){opacity:1;transform:none;transition-delay:.37s}
 .menu-link:hover{color:var(--w)}
 .menu-link::before{content:'';position:absolute;bottom:-1px;left:0;height:1px;width:0;background:var(--blue);transition:width .4s cubic-bezier(.4,0,.2,1)}
 .menu-link:hover::before{width:100%}
 .menu-link-n{font-family:var(--f-body);font-size:10px;letter-spacing:2px;color:var(--blue-lt);position:absolute;right:0;top:50%;transform:translateY(-50%);opacity:0;transition:opacity .25s}
 .menu-link:hover .menu-link-n{opacity:1}
-.menu-foot{position:absolute;bottom:32px;left:52px;right:52px;display:flex;justify-content:space-between;align-items:center;opacity:0;transition:opacity .35s ease .42s;z-index:2}
+
+.menu-foot{
+  position:absolute;bottom:32px;left:52px;right:52px;
+  display:flex;justify-content:space-between;align-items:center;
+  opacity:0;transition:opacity .35s ease .42s;
+  z-index:2;
+}
 .menu.open .menu-foot{opacity:1}
 .menu-foot-loc{font-family:var(--f-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.22)}
 .menu-foot-x{font-family:var(--f-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-lt);text-decoration:none;transition:color .2s}
@@ -114,7 +139,7 @@ section.active{display:block}
 .mq-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.45);display:inline-block;flex-shrink:0}
 
 /* ── SHARED ── */
-.si{padding:120px 52px 90px}
+.si{padding:100px 52px 90px}
 .s-label{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--blue-lt);margin-bottom:14px}
 .s-title{font-family:var(--f-head);font-size:clamp(36px,5vw,62px);font-weight:800;line-height:.96;letter-spacing:-2px}
 .s-title em{font-style:italic;color:var(--blue-lt);font-weight:600}
@@ -126,37 +151,13 @@ section.active{display:block}
 .wg{columns:3;column-gap:12px;margin-top:56px}
 .wc{position:relative;overflow:hidden;break-inside:avoid;margin-bottom:12px;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1)}
 .wc:hover{transform:translateY(-5px)}
-
-/* ── THE FIX: use aspect-ratio containers with real <img> tags ── */
-.wci{
-  position:relative;
-  overflow:hidden;
-  width:100%;
-}
-.wc:nth-child(4n+1) .wci{aspect-ratio:4/3}
-.wc:nth-child(4n+2) .wci{aspect-ratio:16/9}
-.wc:nth-child(4n+3) .wci{aspect-ratio:3/2}
-.wc:nth-child(4n+0) .wci{aspect-ratio:7/4}
-
-/* The actual image - THIS is how images are displayed reliably */
-.wc-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  transition:transform .55s ease;
-  display:block;
-}
-.wc:hover .wc-img{transform:scale(1.04)}
-
-/* Fallback gradient shown BEHIND the image */
-.wc-fallback{
-  position:absolute;
-  inset:0;
-  z-index:0;
-}
+.wci{position:relative;overflow:hidden;width:100%}
+.wc:nth-child(4n+1) .wci{padding-bottom:78%}
+.wc:nth-child(4n+2) .wci{padding-bottom:54%}
+.wc:nth-child(4n+3) .wci{padding-bottom:66%}
+.wc:nth-child(4n+0) .wci{padding-bottom:58%}
+.wb{position:absolute;inset:0;transition:transform .55s ease}
+.wc:hover .wb{transform:scale(1.04)}
 .bg0{background:linear-gradient(135deg,#0a1460 0%,#1a3af5 50%,#0d2280 100%)}
 .bg1{background:linear-gradient(135deg,#060828 0%,#0e1d8a 60%,#1428c0 100%)}
 .bg2{background:linear-gradient(135deg,#080e3a 0%,#0f2560 50%,#1938b0 100%)}
@@ -167,43 +168,13 @@ section.active{display:block}
 .bg7{background:linear-gradient(135deg,#020510 0%,#071060 55%,#0c1ea8 100%)}
 .bg8{background:linear-gradient(135deg,#030614 0%,#091470 50%,#1530e0 100%)}
 .bg9{background:linear-gradient(135deg,#050818 0%,#0c1a80 60%,#1838f0 100%)}
-
-.wglow{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 55% 55% at 70% 30%,rgba(74,111,255,.4) 0%,transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
+.wglow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 70% 30%,rgba(74,111,255,.4) 0%,transparent 70%);opacity:0;transition:opacity .4s}
 .wc:hover .wglow{opacity:1}
-.winfo{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:18px;background:linear-gradient(to top,rgba(7,9,26,.9) 0%,transparent 100%);transform:translateY(5px);opacity:0;transition:all .35s ease}
+.winfo{position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(to top,rgba(7,9,26,.9) 0%,transparent 100%);transform:translateY(5px);opacity:0;transition:all .35s ease}
 .wc:hover .winfo{transform:none;opacity:1}
 .w-tag{font-family:var(--f-body);font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--blue-lt);margin-bottom:3px}
 .w-name{font-family:var(--f-head);font-size:14px;font-weight:700}
-.w-num{position:absolute;top:14px;right:14px;z-index:3;font-family:var(--f-body);font-size:9px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:2px}
-
-/* ── EXPLORE ── */
-.exp-list{margin-top:52px}
-.exp-item{display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid var(--border);position:relative;transition:padding-left .35s ease}
-.exp-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--blue);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease}
-.exp-item:hover{padding-left:16px}
-.exp-item:hover::before{transform:scaleY(1)}
-.exp-item:first-child{border-top:1px solid var(--border)}
-.exp-left{display:flex;align-items:center;gap:24px}
-.exp-n{font-family:var(--f-body);font-size:10px;font-weight:500;color:var(--blue-lt);letter-spacing:2px;width:28px}
-.exp-name{font-family:var(--f-head);font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.5px;transition:color .25s}
-.exp-item:hover .exp-name{color:var(--blue-lt)}
-.exp-right{display:flex;align-items:center;gap:24px}
-.exp-desc{font-size:13px;font-weight:300;color:var(--g2);max-width:280px;line-height:1.6}
-.exp-arr{font-size:16px;color:var(--blue-lt);opacity:0;transform:translateX(-6px);transition:all .28s}
-.exp-item:hover .exp-arr{opacity:1;transform:none}
-
-/* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.about-vis{aspect-ratio:3/4;background:linear-gradient(135deg,#0a1460 0%,#1a3af5 40%,#060828 100%);position:relative;overflow:hidden}
-.about-vis-lines{position:absolute;inset:0;overflow:hidden}
-.about-vis-glow{position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 70% 40%,rgba(74,111,255,.45) 0%,transparent 70%)}
-.about-badge{position:absolute;bottom:24px;left:24px;background:rgba(7,9,26,.9);border:1px solid var(--border);padding:14px 18px}
-.about-badge-n{font-family:var(--f-head);font-size:30px;font-weight:800;color:var(--blue-lt);line-height:1}
-.about-badge-l{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--g1);margin-top:4px}
-.about-text{font-size:15px;line-height:1.8;color:var(--g1);margin-bottom:20px;font-weight:300}
-.about-skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
-.skill{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--blue-lt);border:1px solid rgba(74,111,255,.3);padding:7px 14px;transition:all .25s}
-.skill:hover{background:rgba(74,111,255,.12);border-color:var(--blue-lt)}
+.w-num{position:absolute;top:14px;right:14px;font-family:var(--f-body);font-size:9px;font-weight:500;color:rgba(255,255,255,.2);letter-spacing:2px}
 
 /* ── CONTACT ── */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
@@ -254,70 +225,16 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
 #intro-count{position:absolute;bottom:44px;right:52px;font-family:var(--f-body);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.12);z-index:2}
 #intro-progress{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(to right,var(--blue),var(--blue-lt));width:0;z-index:3}
 
-/* ── LIGHTBOX ── */
-#lightbox{
-  position:fixed;inset:0;z-index:99990;
-  background:rgba(4,5,18,0.97);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;
-  transition:opacity .35s ease;
-}
-#lightbox.open{opacity:1;pointer-events:all;}
-#lightbox-img{
-  max-width:90vw;max-height:88vh;
-  object-fit:contain;
-  border:1px solid rgba(74,111,255,.25);
-  box-shadow:0 0 80px rgba(26,58,245,.35);
-  transform:scale(.92);
-  transition:transform .38s cubic-bezier(.34,1.56,.64,1);
-  display:block;
-}
-#lightbox.open #lightbox-img{transform:scale(1);}
-#lightbox-close{
-  position:absolute;top:24px;right:32px;
-  background:none;border:1px solid rgba(255,255,255,.15);
-  color:rgba(255,255,255,.7);font-size:22px;
-  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
-#lightbox-close:hover{border-color:var(--blue-lt);color:var(--w);}
-#lightbox-caption{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  font-family:var(--f-head);font-size:11px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;
-  color:rgba(255,255,255,.35);white-space:nowrap;
-}
-#lightbox-tag{
-  color:var(--blue-lt);margin-right:10px;
-}
-#lightbox-counter{
-  position:absolute;top:28px;left:50%;transform:translateX(-50%);
-  font-family:var(--f-body);font-size:10px;letter-spacing:3px;
-  color:rgba(255,255,255,.2);
-}
-#lightbox-prev,#lightbox-next{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:none;border:1px solid rgba(255,255,255,.12);
-  color:rgba(255,255,255,.5);font-size:20px;
-  width:52px;height:52px;display:flex;align-items:center;justify-content:center;
-  transition:all .25s;
-}
-#lightbox-prev{left:24px;}
-#lightbox-next{right:24px;}
-#lightbox-prev:hover,#lightbox-next:hover{border-color:var(--blue-lt);color:var(--w);}
-.wc-img{cursor:zoom-in!important;}
-
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav,.menu-foot{padding-left:24px;padding-right:24px}
   .menu{padding:0 24px 80px}
   .si{padding:80px 24px 70px}
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
   .wg{columns:1}
   .hc{left:24px;right:24px;bottom:36px}
   .h-stats{display:none}
   footer{flex-direction:column;gap:10px;padding:24px;text-align:center}
-  .exp-right{display:none}
 }
 </style>
 </head>
@@ -351,9 +268,7 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
 <div class="menu" id="menu">
   <div class="menu-list">
     <button class="menu-link" id="ml-work"><span class="menu-link-n">01</span>Work</button>
-    <button class="menu-link" id="ml-explore"><span class="menu-link-n">02</span>Explore</button>
-    <button class="menu-link" id="ml-about"><span class="menu-link-n">03</span>About</button>
-    <button class="menu-link" id="ml-contact"><span class="menu-link-n">04</span>Contact</button>
+    <button class="menu-link" id="ml-contact"><span class="menu-link-n">02</span>Contact</button>
     <button class="menu-link" id="ml-home"><span class="menu-link-n">&#8617;</span>Home</button>
   </div>
   <div class="menu-foot">
@@ -397,46 +312,6 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
   </div>
 </section>
 
-<!-- EXPLORE -->
-<section id="explore">
-  <div class="si">
-    <div class="rv"><div class="s-label">What I Offer</div><h2 class="s-title">Web &amp; <em>UI Design</em></h2></div>
-    <div class="exp-list">
-      <div class="exp-item rv">
-        <div class="exp-left"><span class="exp-n">01</span><span class="exp-name">Web Design</span></div>
-        <div class="exp-right"><p class="exp-desc">Pixel-perfect websites built with intent — from wireframe to final pixel.</p><div class="exp-arr">&#8594;</div></div>
-      </div>
-      <div class="exp-item rv d1">
-        <div class="exp-left"><span class="exp-n">02</span><span class="exp-name">UI Design</span></div>
-        <div class="exp-right"><p class="exp-desc">Beautiful, intuitive interfaces with a sharp eye for detail and purpose.</p><div class="exp-arr">&#8594;</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="si">
-    <div class="about-grid">
-      <div class="rv">
-        <div class="about-vis">
-          <div class="about-vis-lines"><svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><g transform="rotate(-15 200 250)" stroke="rgba(255,255,255,0.35)" stroke-width="0.5" fill="none"><line x1="-100" y1="0" x2="700" y2="0"/><line x1="-100" y1="18" x2="700" y2="18"/><line x1="-100" y1="36" x2="700" y2="36"/><line x1="-100" y1="54" x2="700" y2="54"/><line x1="-100" y1="72" x2="700" y2="72"/><line x1="-100" y1="90" x2="700" y2="90"/><line x1="-100" y1="108" x2="700" y2="108"/><line x1="-100" y1="126" x2="700" y2="126"/><line x1="-100" y1="144" x2="700" y2="144"/><line x1="-100" y1="162" x2="700" y2="162"/><line x1="-100" y1="180" x2="700" y2="180"/><line x1="-100" y1="198" x2="700" y2="198"/><line x1="-100" y1="216" x2="700" y2="216"/><line x1="-100" y1="234" x2="700" y2="234"/><line x1="-100" y1="252" x2="700" y2="252"/><line x1="-100" y1="270" x2="700" y2="270"/><line x1="-100" y1="288" x2="700" y2="288"/><line x1="-100" y1="306" x2="700" y2="306"/><line x1="-100" y1="324" x2="700" y2="324"/><line x1="-100" y1="342" x2="700" y2="342"/><line x1="-100" y1="360" x2="700" y2="360"/><line x1="-100" y1="378" x2="700" y2="378"/><line x1="-100" y1="396" x2="700" y2="396"/><line x1="-100" y1="414" x2="700" y2="414"/><line x1="-100" y1="432" x2="700" y2="432"/><line x1="-100" y1="450" x2="700" y2="450"/><line x1="-100" y1="468" x2="700" y2="468"/></g></svg></div>
-          <div class="about-vis-glow"></div>
-          <div class="about-badge"><div class="about-badge-n">30+</div><div class="about-badge-l">Projects Delivered</div></div>
-        </div>
-      </div>
-      <div class="rv d2">
-        <div class="s-label">About Me</div>
-        <h2 class="s-title" style="margin-bottom:28px">Design is<br><em>My Language</em></h2>
-        <p class="about-text">I'm Miyajlo — a web and UI designer based in Kikinda, Serbia. I've been designing digital interfaces for over a year, building a sharp eye for what makes a product feel genuinely good to use.</p>
-        <p class="about-text">My focus: Web Design and UI Design. Clean layouts, intentional typography, and designs that don't just look great — they work. Every project starts with one question: what would make this <em>unforgettable</em>?</p>
-        <p class="about-text">Currently available for freelance. If design is your sharpest edge, let's talk.</p>
-        <div class="about-skills"><div class="skill">Figma</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="si">
@@ -474,19 +349,9 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
   <div class="foot-copy">&copy; 2025 &middot; KIKINDA &middot; WORLDWIDE</div>
 </footer>
 
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <button id="lightbox-close">&#x2715;</button>
-  <div id="lightbox-counter"></div>
-  <button id="lightbox-prev">&#8592;</button>
-  <img id="lightbox-img" src="" alt="">
-  <button id="lightbox-next">&#8594;</button>
-  <div id="lightbox-caption"><span id="lightbox-tag"></span><span id="lightbox-name"></span></div>
-</div>
-
 <script>
 (function(){
-  var SECS=['work','explore','about','contact'];
+  var SECS=['work','contact'];
   var wipe=null;
 
   function show(id){
@@ -564,44 +429,18 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
       }
     },INT);
 
-    /* ════════════════════════════════════════════════
-       ── PROJECTS — FIXED: uses <img> tags, NOT
-          background-image (which was being overridden
-          by the .bg0-.bg9 gradient CSS classes)
-    ════════════════════════════════════════════════ */
+    /* ── PROJECTS ── */
     var PROJECTS=[
       {tag:'Web Design',name:'Red Futuristic',img:'Project1.png'},
       {tag:'Web Design',name:'Minimalistic Menu',img:'Project2.png'},
-      {tag:'Web Design',name:'Resume Panel',img:'Project3.png'},
+      {tag:'Web Design',name:'Resume Panel;',img:'Project3.png'},
       {tag:'Web Design',name:'Perfect Panel',img:'Project4.png'},
       {tag:'Web Design',name:'Futuristic Hero',img:'Project5.png'},
-      {tag:'Web Design',name:'Futuristic Hero',img:'Project6.png'}
+      {tag:'Web Design',name:'Futuristic Hero',img:'Project6.png'},
+      {tag:'Web Design',name:'Lumen Health App',img:''}
     ];
-
     var grid=document.getElementById('work-grid');
-    if(grid){
-      PROJECTS.forEach(function(p,i){
-        var card=document.createElement('div');
-        card.className='wc rv';
-
-        /* Build inner HTML using a real <img> tag.
-           The fallback .bg div sits behind it at z-index:0
-           so if the image fails to load you still see a gradient. */
-        card.innerHTML=
-          '<div class="wci">'
-          +'<div class="wc-fallback bg'+(i%10)+'"></div>'
-          +'<img class="wc-img" src="'+p.img+'" alt="'+p.name+'" loading="lazy">'
-          +'<div class="wglow"></div>'
-          +'<div class="w-num">'+String(i+1).padStart(2,'0')+'</div>'
-          +'</div>'
-          +'<div class="winfo">'
-          +'<div class="w-tag">'+p.tag+'</div>'
-          +'<div class="w-name">'+p.name+'</div>'
-          +'</div>';
-
-        grid.appendChild(card);
-      });
-    }
+    if(grid){PROJECTS.forEach(function(p,i){var card=document.createElement('div');card.className='wc rv';var bg=p.img?'background:url("'+p.img+'") center/cover no-repeat;':'';card.innerHTML='<div class="wci"><div class="wb bg'+(i%10)+'" style="'+bg+'"><div class="wglow"></div></div><div class="w-num">'+String(i+1).padStart(2,'0')+'</div></div><div class="winfo"><div class="w-tag">'+p.tag+'</div><div class="w-name">'+p.name+'</div></div>';grid.appendChild(card);});}
 
     /* ── NAV / MENU ── */
     function g(x){return document.getElementById(x);}
@@ -615,8 +454,6 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
     g('n-logo').addEventListener('click',function(){closeMenu();show('home');});
     g('n-contact').addEventListener('click',function(){navTo('contact');});
     g('ml-work').addEventListener('click',function(){navTo('work');});
-    g('ml-explore').addEventListener('click',function(){navTo('explore');});
-    g('ml-about').addEventListener('click',function(){navTo('about');});
     g('ml-contact').addEventListener('click',function(){navTo('contact');});
     g('ml-home').addEventListener('click',function(){navTo('home');});
     g('cw').addEventListener('click',function(){show('work');});
@@ -640,78 +477,6 @@ footer{position:relative;z-index:20;border-top:1px solid var(--border);padding:3
 
     /* ── PARALLAX ── */
     document.addEventListener('mousemove',function(e){var xp=(e.clientX/window.innerWidth-.5)*10,yp=(e.clientY/window.innerHeight-.5)*10,img=g('hi');if(img)img.style.transform='translate('+(xp*.4)+'px,'+(yp*.4)+'px) scale(1.04)';});
-
-    /* ── LIGHTBOX ── */
-    var lb=g('lightbox');
-    var lbImg=g('lightbox-img');
-    var lbName=g('lightbox-name');
-    var lbTag=g('lightbox-tag');
-    var lbCounter=g('lightbox-counter');
-    var lbClose=g('lightbox-close');
-    var lbPrev=g('lightbox-prev');
-    var lbNext=g('lightbox-next');
-    var lbProjects=[];
-    var lbIndex=0;
-
-    function openLightbox(idx){
-      lbIndex=idx;
-      var p=lbProjects[idx];
-      lbImg.src=p.img;
-      lbImg.alt=p.name;
-      lbName.textContent=p.name;
-      lbTag.textContent=p.tag+' — ';
-      lbCounter.textContent=(idx+1)+' / '+lbProjects.length;
-      lb.classList.add('open');
-      document.body.style.overflow='hidden';
-    }
-    function closeLightbox(){
-      lb.classList.remove('open');
-      document.body.style.overflow='';
-    }
-    function lbGo(dir){
-      lbIndex=(lbIndex+dir+lbProjects.length)%lbProjects.length;
-      /* quick fade swap */
-      lbImg.style.opacity='0';
-      lbImg.style.transform='scale(.96)';
-      setTimeout(function(){
-        var p=lbProjects[lbIndex];
-        lbImg.src=p.img;
-        lbImg.alt=p.name;
-        lbName.textContent=p.name;
-        lbTag.textContent=p.tag+' — ';
-        lbCounter.textContent=(lbIndex+1)+' / '+lbProjects.length;
-        lbImg.style.opacity='1';
-        lbImg.style.transform='scale(1)';
-      },180);
-    }
-    lbImg.style.transition='opacity .18s ease, transform .18s ease';
-
-    /* attach click to cards after they're built */
-    setTimeout(function(){
-      var cards=document.querySelectorAll('.wc');
-      cards.forEach(function(card,i){
-        lbProjects.push({
-          img:card.querySelector('.wc-img').src,
-          name:card.querySelector('.w-name').textContent,
-          tag:card.querySelector('.w-tag').textContent
-        });
-        card.querySelector('.wc-img').addEventListener('click',function(e){
-          e.stopPropagation();
-          openLightbox(i);
-        });
-      });
-    },100);
-
-    lbClose.addEventListener('click',closeLightbox);
-    lbPrev.addEventListener('click',function(){lbGo(-1);});
-    lbNext.addEventListener('click',function(){lbGo(1);});
-    lb.addEventListener('click',function(e){if(e.target===lb)closeLightbox();});
-    document.addEventListener('keydown',function(e){
-      if(!lb.classList.contains('open'))return;
-      if(e.key==='Escape')closeLightbox();
-      if(e.key==='ArrowLeft')lbGo(-1);
-      if(e.key==='ArrowRight')lbGo(1);
-    });
   });
 })();
 </script>
